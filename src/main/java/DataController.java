@@ -51,6 +51,15 @@ public class DataController {
 
         params.put("appointments", testmasseur.freeAppointments);
 
+        List testLengths = new ArrayList();
+        testLengths.add(Massage.fifteen.length);
+        testLengths.add(Massage.thirteen.length);
+        testLengths.add(Massage.fourtyfive.length);
+        testLengths.add(Massage.sixteen.length);
+        testLengths.add(Massage.nineteen.length);
+
+
+        params.put("lengths", testLengths);
 
         return new ModelAndView(params, "/booking");
     }

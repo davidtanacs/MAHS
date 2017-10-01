@@ -1,51 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <!-- Latest compiled and minified Jquery -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <head>
+        <meta charset="UTF-8"/>
+        <!-- Latest compiled and minified Jquery -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+                integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-    <title>Booking</title>
-</head>
-<body>
-<h1>Massage booking</h1>
-<form>
-    <p>Please enter your name!</p>
-    <input type="text" name="name" placeholder="Your name"/>
-    <p>Please enter your locker number!</p>
-    <input type="number" name="lockerno" placeholder="Your locker number"/>
-    <p>I'd like two appointment at the same time</p>
-    <input type="checkbox"/>
-    <p>Please choose your massage therapist!</p>
-    <select>
-        <option th:each="name, iterstat: ${masseur}" th:value="${name}" th:text="${name}"/>
-    </select>
-    <p>Please choose your massage length!</p>
-    <select>
-        <option th:each="time, iterstat: ${lengths}" th:value="${time}" th:text="${time}"/>
-    </select>
-    <p>Please choose your massage starting time</p>
-    <select>
-        <option th:each="time, iterstat: ${appointments}" th:value="${time}" th:text="${time}"/>
-    </select>
-
-    <input type="submit" value="Book it!"/>
-
-
-</form>
-
-</body>
+        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+        <title>Booking</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Massage booking</h1>
+            <div class="form_group">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                            <p>Please enter your name!</p>
+                            <input type="text" name="name" placeholder="Your name" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                            <p>Please enter your locker number!</p>
+                            <input type="number" name="lockerno" placeholder="Your locker number" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                            <p>I'd like two appointment at the same time</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                            <input type="checkbox" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                            <label for="sel1">Please choose your massage therapist!</label>
+                            <select class="form-control">
+                                <option th:each="name, iterstat: ${masseur}" th:value="${name}" th:text="${name}"/>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                            <label for="sel1">Please choose your massage length!</label>
+                            <select class="form-control">
+                                <option th:each="time, iterstat: ${lengths}" th:value="${time}" th:text="${time}"/>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                            <label for="sel1">Please choose your massage starting time</label>
+                            <select class="form-control">
+                                <option th:each="time, iterstat: ${appointments}" th:value="${time}" th:text="${time}"/>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                            <input type="submit" value="Book it!" class="form-control"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
 </html>
