@@ -20,6 +20,10 @@ public class App {
                 return new ThymeleafTemplateEngine().render(DataController.renderMainMenu());
             });
 
+            get("/booking", (Request req, Response res) -> {
+                return new ThymeleafTemplateEngine().render(DataController.renderBooking());
+            });
+
             enableDebugScreen();
         }
 

@@ -2,7 +2,9 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import javax.jws.WebParam;
 import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +17,13 @@ public class DataController {
         /*MassageTherapist test = new MassageTherapist(MassageTherapist.massageTherapist.Móni);
         params.put("test", test.gender);*/
 
-        Treatment test = new Treatment(90L, 6, 15, MassageTherapist.massageTherapist.Móni, 1);
+        return new ModelAndView(params, "/index");
+    }
+
+    public static ModelAndView renderBooking(){
+        Map params = new HashMap<String, String>();
+
+        /*Treatment test = new Treatment(90L, 6, 15, MassageTherapist.massageTherapist.Móni, 1);
         List testList = new ArrayList();
         testList.add(test.getTreatmentLength());
         testList.add(test.getTreatmentStart());
@@ -24,17 +32,26 @@ public class DataController {
         testList.add(test.getMassageTherapist());
         testList.add(test.getGuestId());
         testList.add(test.getTreatmentId());
-        params.put("test", testList);
+        params.put("test", testList);*/
+
+        List testList = new ArrayList();
+
+        MassageTherapist testmasseur = new MassageTherapist(MassageTherapist.massageTherapist.Móni);
+        MassageTherapist testmasseur2 = new MassageTherapist(MassageTherapist.massageTherapist.Kitti);
 
 
+        testList.add(new MassageTherapist(MassageTherapist.massageTherapist.Kitti).name);
+        testList.add(new MassageTherapist(MassageTherapist.massageTherapist.Betti).name);
+        testList.add(new MassageTherapist(MassageTherapist.massageTherapist.Dani).name);
+        testList.add(new MassageTherapist(MassageTherapist.massageTherapist.Dávid).name);
 
-        /*params.put("testLength", test.getTreatmentLength());
-        params.put("testStart", test.getTreatmentStart());
-        params.put("testEnd", test.getTreatmentEnd());
-        params.put("testBreakAfter", test.getBreakAfter());
-        params.put("testTherapist", test.getMassageTherapist());
-        params.put("testGuestId", test.getGuestId());*/
 
-        return new ModelAndView(params, "/index");
+        params.put("masseur", testList);
+
+
+        params.put("appointments", testmasseur.freeAppointments);
+
+
+        return new ModelAndView(params, "/booking");
     }
 }
