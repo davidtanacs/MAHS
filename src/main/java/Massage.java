@@ -8,8 +8,8 @@ public enum Massage {
     sixteen(60),
     nineteen(90);
 
-    private int length;
-    private int price;
+    int length;
+    int price;
 
     Massage(int length){
         this.length = length;

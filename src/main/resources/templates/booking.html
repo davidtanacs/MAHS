@@ -21,10 +21,31 @@
     <title>Booking</title>
 </head>
 <body>
-<h1>Main page</h1>
-<ol th:each="data, iterstat : ${test}">
-    <li th:text="${data}"></li>
-</ol>
+<h1>Massage booking</h1>
+<form>
+    <p>Please enter your name!</p>
+    <input type="text" name="name" placeholder="Your name"/>
+    <p>Please enter your locker number!</p>
+    <input type="number" name="lockerno" placeholder="Your locker number"/>
+    <p>I'd like two appointment at the same time</p>
+    <input type="checkbox"/>
+    <p>Please choose your massage therapist!</p>
+    <select>
+        <option th:each="name, iterstat: ${masseur}" th:value="${name}" th:text="${name}"/>
+    </select>
+    <p>Please choose your massage length!</p>
+    <select>
+        <option th:each="time, iterstat: ${lengths}" th:value="${time}" th:text="${time}"/>
+    </select>
+    <p>Please choose your massage starting time</p>
+    <select>
+        <option th:each="time, iterstat: ${appointments}" th:value="${time}" th:text="${time}"/>
+    </select>
+
+    <input type="submit" value="Book it!"/>
+
+
+</form>
 
 </body>
 </html>
