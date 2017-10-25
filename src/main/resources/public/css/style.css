@@ -6,15 +6,18 @@ h1
 
 .row
 {
+    text-align: center;
     margin: 30px;
 }
 
 .form-control
 {
+    text-align: center;
     margin: 20px;
 }
 
 label
 {
+    text-align: center;
     font-size: x-large;
 }

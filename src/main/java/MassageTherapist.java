@@ -38,10 +38,19 @@ public class MassageTherapist {
     private List generateAppointments(){
         if (isAfternoon()){
             shiftStart = LocalTime.of(15,30);
+            if (LocalTime.now().isAfter(shiftStart)){
+                shiftStart = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
+            }
             shiftEnd = LocalTime.of(20,35);
         } else {
             shiftStart = LocalTime.of(9,00);
+            if(LocalTime.now().isAfter(shiftStart)){
+                shiftStart = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
+            }
             shiftEnd = LocalTime.of(11,35);
+        }
+        while (shiftStart.getMinute() % 5 != 0){
+            shiftStart = shiftStart.plusMinutes(1);
         }
         while (shiftStart.isBefore(shiftEnd)){
             freeAppointments.add(shiftStart);

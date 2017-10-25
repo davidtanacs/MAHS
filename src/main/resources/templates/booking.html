@@ -51,7 +51,7 @@
                         <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
                             <label for="sel1">Please choose your massage therapist!</label>
                             <select class="form-control">
-                                <option th:each="name, iterstat: ${masseur}" th:value="${name}" th:text="${name}"/>
+                                <option th:each="name, iterstat: ${masseurs}" th:value="${name}" th:text="${name}"/>
                             </select>
                         </div>
                     </div>

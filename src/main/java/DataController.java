@@ -5,10 +5,7 @@ import spark.Response;
 import javax.jws.WebParam;
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DataController {
 
@@ -34,32 +31,30 @@ public class DataController {
         testList.add(test.getTreatmentId());
         params.put("test", testList);*/
 
-        List testList = new ArrayList();
+        List masseurs = new ArrayList();
+        List massageLengths = new ArrayList();
 
-        MassageTherapist testmasseur = new MassageTherapist(MassageTherapist.massageTherapist.Móni);
-        MassageTherapist testmasseur2 = new MassageTherapist(MassageTherapist.massageTherapist.Kitti);
+        MassageTherapist Kitti = new MassageTherapist(MassageTherapist.massageTherapist.Kitti);
+        masseurs.add(Kitti.name);
+        MassageTherapist Betti = new MassageTherapist(MassageTherapist.massageTherapist.Betti);
+        masseurs.add(Betti.name);
+        MassageTherapist Dani = new MassageTherapist(MassageTherapist.massageTherapist.Dani);
+        masseurs.add(Dani.name);
+        MassageTherapist Móni = new MassageTherapist(MassageTherapist.massageTherapist.Móni);
+        masseurs.add(Móni.name);
 
-
-        testList.add(new MassageTherapist(MassageTherapist.massageTherapist.Kitti).name);
-        testList.add(new MassageTherapist(MassageTherapist.massageTherapist.Betti).name);
-        testList.add(new MassageTherapist(MassageTherapist.massageTherapist.Dani).name);
-        testList.add(new MassageTherapist(MassageTherapist.massageTherapist.Dávid).name);
-
-
-        params.put("masseur", testList);
-
-
-        params.put("appointments", testmasseur.freeAppointments);
-
-        List testLengths = new ArrayList();
-        testLengths.add(Massage.fifteen.length);
-        testLengths.add(Massage.thirteen.length);
-        testLengths.add(Massage.fourtyfive.length);
-        testLengths.add(Massage.sixteen.length);
-        testLengths.add(Massage.nineteen.length);
+        List appointments = Kitti.freeAppointments;
+        params.put("appointments", appointments);
+        params.put("masseurs", masseurs);
 
 
-        params.put("lengths", testLengths);
+        massageLengths.add(Massage.fifteen.length);
+        massageLengths.add(Massage.thirteen.length);
+        massageLengths.add(Massage.fourtyfive.length);
+        massageLengths.add(Massage.sixteen.length);
+        massageLengths.add(Massage.nineteen.length);
+
+        params.put("lengths", massageLengths);
 
         return new ModelAndView(params, "/booking");
     }
