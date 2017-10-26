@@ -1,3 +1,4 @@
+import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark.*;
@@ -24,17 +25,15 @@ public class App {
                 return new ThymeleafTemplateEngine().render(DataController.renderBookingPage());
             });
 
-            get("/submitBooking", (Request req, Response res) -> {
-                int lockerNo = Integer.parseInt(req.queryParams("lockerno"));
-                String name = req.queryParams("name");
-                long length = Integer.parseInt(req.queryParams("length"));
-                int treatmentStartHour = Integer.parseInt(req.queryParams("appointment").split(":")[0]);
-                int treatmentStartMinute = Integer.parseInt(req.queryParams("appointment").split(":")[1]);
-                String masseur = req.queryParams("masseur");
+            post("/submitBooking/:lockerno/:name/:length/:hour/:minute/:masseur", (Request req, Response res) -> {
+                String name = req.params("name");
+                int lockerNo = Integer.parseInt(req.params("lockerno"));
+                long length = Integer.parseInt(req.params("length"));
+                int treatmentStartHour = Integer.parseInt(req.params("hour"));
+                int treatmentStartMinute = Integer.parseInt(req.params("minute"));
+                String masseur = req.params("masseur");
 
-                DataController.BookAMassage(lockerNo, name, length, treatmentStartHour, treatmentStartMinute, masseur);
-
-                return new ThymeleafTemplateEngine().render(DataController.renderMainMenu());
+                return new ThymeleafTemplateEngine().render(DataController.bookAMassage(lockerNo, name, length, treatmentStartHour, treatmentStartMinute, masseur));
             });
 
             enableDebugScreen();

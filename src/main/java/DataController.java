@@ -11,9 +11,6 @@ public class DataController {
 
     public static ModelAndView renderMainMenu(){
         Map params = new HashMap<String, String>();
-        /*MassageTherapist test = new MassageTherapist(MassageTherapist.massageTherapist.Móni);
-        params.put("test", test.gender);*/
-
         return new ModelAndView(params, "/index");
     }
 
@@ -48,17 +45,20 @@ public class DataController {
         return new ModelAndView(params, "/booking");
     }
 
-    public static void BookAMassage(int lockerNo, String name, long length, int treatmentStartHour, int treatmentStartMinute, String masseur){
+    public static ModelAndView bookAMassage(int lockerNo, String name, long length, int treatmentStartHour, int treatmentStartMinute, String masseur){
+        Map params = new HashMap<String, String>();
         Guest guest = new Guest(lockerNo, name);
         Treatment treatment = new Treatment(length, treatmentStartHour, treatmentStartMinute,
                 MassageTherapist.getMasseurByName(masseur), guest.getId());
-        System.out.println(treatment.getTreatmentId());
         MassageTherapist.getMasseurByName(masseur).addTreatments(treatment.getTreatmentId());
         System.out.println(MassageTherapist.getMasseurByName(masseur).getTreatments());
         System.out.println("guest: " + guest.getName() + " id: " + guest.getId() + " lockerNO: " + guest.getLockerNo());
         System.out.println("treatment start: " + treatment.getTreatmentStart() + " end: " + treatment.getTreatmentEnd());
         System.out.println("length: " + treatment.getTreatmentLength()  + " break after: " + treatment.getBreakAfter());
         System.out.println("guestid: " + treatment.getGuestId() + " masseur: " + treatment.getMassageTherapist());
+        System.out.println("price: " + treatment.getPrice());
+
+        return new ModelAndView(params, "/index");
     }
     
     
