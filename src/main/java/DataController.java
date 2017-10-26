@@ -17,19 +17,8 @@ public class DataController {
         return new ModelAndView(params, "/index");
     }
 
-    public static ModelAndView renderBooking(){
+    public static ModelAndView renderBookingPage(){
         Map params = new HashMap<String, String>();
-
-        /*Treatment test = new Treatment(90L, 6, 15, MassageTherapist.massageTherapist.Móni, 1);
-        List testList = new ArrayList();
-        testList.add(test.getTreatmentLength());
-        testList.add(test.getTreatmentStart());
-        testList.add(test.getTreatmentEnd());
-        testList.add(test.getBreakAfter());
-        testList.add(test.getMassageTherapist());
-        testList.add(test.getGuestId());
-        testList.add(test.getTreatmentId());
-        params.put("test", testList);*/
 
         List masseurs = new ArrayList();
         List massageLengths = new ArrayList();
@@ -58,4 +47,19 @@ public class DataController {
 
         return new ModelAndView(params, "/booking");
     }
+
+    public static void BookAMassage(int lockerNo, String name, long length, int treatmentStartHour, int treatmentStartMinute, String masseur){
+        Guest guest = new Guest(lockerNo, name);
+        Treatment treatment = new Treatment(length, treatmentStartHour, treatmentStartMinute,
+                MassageTherapist.getMasseurByName(masseur), guest.getId());
+        System.out.println(treatment.getTreatmentId());
+        MassageTherapist.getMasseurByName(masseur).addTreatments(treatment.getTreatmentId());
+        System.out.println(MassageTherapist.getMasseurByName(masseur).getTreatments());
+        System.out.println("guest: " + guest.getName() + " id: " + guest.getId() + " lockerNO: " + guest.getLockerNo());
+        System.out.println("treatment start: " + treatment.getTreatmentStart() + " end: " + treatment.getTreatmentEnd());
+        System.out.println("length: " + treatment.getTreatmentLength()  + " break after: " + treatment.getBreakAfter());
+        System.out.println("guestid: " + treatment.getGuestId() + " masseur: " + treatment.getMassageTherapist());
+    }
+    
+    
 }

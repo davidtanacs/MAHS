@@ -24,7 +24,7 @@
         <div class="container">
             <h1>Massage booking</h1>
             <div class="form_group">
-                <form>
+                <form action="/submitBooking" method="GET">
                     <div class="row">
                         <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
                             <h3>Please enter your name!</h3>
@@ -50,7 +50,7 @@
                     <div class="row">
                         <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
                             <label for="sel1">Please choose your massage therapist!</label>
-                            <select class="form-control">
+                            <select name="masseur" class="form-control">
                                 <option th:each="name, iterstat: ${masseurs}" th:value="${name}" th:text="${name}"/>
                             </select>
                         </div>
@@ -58,7 +58,7 @@
                     <div class="row">
                         <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
                             <label for="sel1">Please choose your massage length!</label>
-                            <select class="form-control">
+                            <select name="length" class="form-control">
                                 <option th:each="time, iterstat: ${lengths}" th:value="${time}" th:text="${time}"/>
                             </select>
                         </div>
@@ -66,7 +66,7 @@
                     <div class="row">
                         <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
                             <label for="sel1">Please choose your massage starting time</label>
-                            <select class="form-control">
+                            <select name="appointment" class="form-control">
                                 <option th:each="time, iterstat: ${appointments}" th:value="${time}" th:text="${time}"/>
                             </select>
                         </div>

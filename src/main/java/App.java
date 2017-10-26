@@ -21,7 +21,20 @@ public class App {
             });
 
             get("/booking", (Request req, Response res) -> {
-                return new ThymeleafTemplateEngine().render(DataController.renderBooking());
+                return new ThymeleafTemplateEngine().render(DataController.renderBookingPage());
+            });
+
+            get("/submitBooking", (Request req, Response res) -> {
+                int lockerNo = Integer.parseInt(req.queryParams("lockerno"));
+                String name = req.queryParams("name");
+                long length = Integer.parseInt(req.queryParams("length"));
+                int treatmentStartHour = Integer.parseInt(req.queryParams("appointment").split(":")[0]);
+                int treatmentStartMinute = Integer.parseInt(req.queryParams("appointment").split(":")[1]);
+                String masseur = req.queryParams("masseur");
+
+                DataController.BookAMassage(lockerNo, name, length, treatmentStartHour, treatmentStartMinute, masseur);
+
+                return new ThymeleafTemplateEngine().render(DataController.renderMainMenu());
             });
 
             enableDebugScreen();

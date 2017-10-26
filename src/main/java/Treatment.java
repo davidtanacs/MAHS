@@ -4,17 +4,19 @@ import java.time.LocalTime;
 
 public class Treatment {
 
-    private static int treatmentId = 0;
+    private static int treatmentCounter = 0;
+    private int treatmentId;
     private Duration treatmentLength;
     private LocalTime treatmentStart;
     private LocalTime treatmentEnd;
     private Duration breakAfter;
-    MassageTherapist.massageTherapist massageTherapist;
+    MassageTherapist massageTherapist;
     private int guestId;
+    private int price;
 
-    public Treatment(Long treatmentLength, int treatmentStartHour, int treatmentStartMinute, MassageTherapist.massageTherapist massageTherapist, int guestId) {
-        treatmentId++;
-        this.treatmentId = treatmentId;
+    public Treatment(Long treatmentLength, int treatmentStartHour, int treatmentStartMinute, MassageTherapist massageTherapist, int guestId) {
+        treatmentCounter++;
+        this.treatmentId = treatmentCounter;
         this.treatmentLength = Duration.ofMinutes(treatmentLength);
         this.treatmentStart = LocalTime.of(treatmentStartHour, treatmentStartMinute);
         this.treatmentEnd = treatmentStart.plusMinutes(treatmentLength);
@@ -25,9 +27,24 @@ public class Treatment {
         } else {
             this.breakAfter = Duration.ofMinutes(10);
         }
+        if (treatmentLength == 15L) {
+            this.price = 1990;
+        } else if (treatmentLength == 30L) {
+            this.price = 3490;
+        } else if (treatmentLength == 45L) {
+            this.price = 4990;
+        } else if (treatmentLength == 60L) {
+            this.price = 6390;
+        } else if (treatmentLength == 90L) {
+            this.price = 8990;
+        }
     }
 
-    public static int getTreatmentId() {
+    public int getPrice() {
+        return price;
+    }
+
+    public int getTreatmentId() {
         return treatmentId;
     }
 
@@ -59,11 +76,11 @@ public class Treatment {
         this.breakAfter = breakAfter;
     }
 
-    public MassageTherapist.massageTherapist getMassageTherapist() {
+    public MassageTherapist getMassageTherapist() {
         return massageTherapist;
     }
 
-    public void setMassageTherapist(MassageTherapist.massageTherapist massageTherapist) {
+    public void setMassageTherapist(MassageTherapist massageTherapist) {
         this.massageTherapist = massageTherapist;
     }
 
