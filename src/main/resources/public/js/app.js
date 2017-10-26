@@ -15,7 +15,15 @@ function booking() {
             type:'post',
             success: function(){
                 window.location.replace("/");
+                alert("Booking successful for a " + length + " minutes long massage at " + hour + ":" + minute + " by " + masseur + " ."
+                + "\nThank you " + name + " (locker no.: " + lockerno + ")!");
             }
+        });
+    } else {
+        $.ajax({
+          success: function () {
+              window.location.replace("/booking");
+          }
         });
     }
 }
