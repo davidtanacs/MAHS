@@ -1,5 +1,8 @@
+package com.hobbyProject.mahs.model;
+
+import com.hobbyProject.mahs.model.MassageTherapist;
+
 import java.time.Duration;
-import java.time.Clock;
 import java.time.LocalTime;
 
 public class Treatment {

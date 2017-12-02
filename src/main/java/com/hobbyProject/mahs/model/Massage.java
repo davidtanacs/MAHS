@@ -1,4 +1,4 @@
-
+package com.hobbyProject.mahs.model;
 
 public enum Massage {
 
@@ -8,7 +8,7 @@ public enum Massage {
     sixteen(60),
     nineteen(90);
 
-    int length;
+    public int length;
     int price;
 
     Massage(int length){

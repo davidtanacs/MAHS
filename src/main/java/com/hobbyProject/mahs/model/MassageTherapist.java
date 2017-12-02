@@ -1,19 +1,21 @@
+package com.hobbyProject.mahs.model;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MassageTherapist {
 
-    massageTherapist name;
+    public massageTherapist name;
     String gender;
     List<Integer> treatments;
     static List<MassageTherapist> massageTherapists = new ArrayList<>();
-    List<LocalTime> freeAppointments = new ArrayList<>();
+    public List<LocalTime> freeAppointments = new ArrayList<>();
     LocalTime shiftStart;
     LocalTime shiftEnd;
     
     
-    MassageTherapist(massageTherapist name){
+    public MassageTherapist(massageTherapist name){
         this.name = name;
         this.gender = name.getGender();
         this.treatments = new ArrayList<>();
@@ -29,7 +31,7 @@ public class MassageTherapist {
         return false;
     }
 
-    static MassageTherapist getMasseurByName(String name){
+    public static MassageTherapist getMasseurByName(String name){
         MassageTherapist.massageTherapist massageTherapist = MassageTherapist.massageTherapist.valueOf(name);
         for (MassageTherapist masseur: massageTherapists
              ) {

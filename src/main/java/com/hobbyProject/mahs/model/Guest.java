@@ -1,3 +1,5 @@
+package com.hobbyProject.mahs.model;
+
 public class Guest {
 
 
@@ -6,7 +8,7 @@ public class Guest {
     private int lockerNo;
     private String name;
 
-    Guest(int lockerNo, String name){
+    public Guest(int lockerNo, String name){
         this.lockerNo = lockerNo;
         this.name = name;
         this.id = idCounter++;
