@@ -1,10 +1,14 @@
 package com.hobbyProject.mahs.model;
 
-import com.hobbyProject.mahs.model.MassageTherapist;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalTime;
 
+
+@Component
+@Scope("session")
 public class Treatment {
 
     private static int treatmentCounter = 0;

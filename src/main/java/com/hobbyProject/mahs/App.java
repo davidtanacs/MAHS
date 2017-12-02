@@ -1,42 +1,18 @@
 package com.hobbyProject.mahs;
 
-import com.hobbyProject.mahs.controller.DataController;
-import spark.Request;
-import spark.Response;
-import spark.template.thymeleaf.ThymeleafTemplateEngine;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-import static spark.Spark.*;
-import static spark.debug.DebugScreen.enableDebugScreen;
-
+@SpringBootApplication
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 public class App {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-            // default server settings
-            exception(Exception.class, (e, req, res) -> e.printStackTrace());
-            staticFileLocation("/public");
-            port(1234);
-
-            get("/", (Request req, Response res) -> {
-                return new ThymeleafTemplateEngine().render(DataController.renderMainMenu());
-            });
-
-            get("/booking", (Request req, Response res) -> {
-                return new ThymeleafTemplateEngine().render(DataController.renderBookingPage());
-            });
-
-            post("/submitBooking/:lockerno/:name/:length/:hour/:minute/:masseur", (Request req, Response res) -> {
-                String name = req.params("name");
-                int lockerNo = Integer.parseInt(req.params("lockerno"));
-                long length = Integer.parseInt(req.params("length"));
-                int treatmentStartHour = Integer.parseInt(req.params("hour"));
-                int treatmentStartMinute = Integer.parseInt(req.params("minute"));
-                String masseur = req.params("masseur");
-
-                return new ThymeleafTemplateEngine().render(DataController.bookAMassage(lockerNo, name, length, treatmentStartHour, treatmentStartMinute, masseur));
-            });
-
-            enableDebugScreen();
-        }
-
+        SpringApplication.run(App.class, args);
     }
+
+
+}
