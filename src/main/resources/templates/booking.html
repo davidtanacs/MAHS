@@ -27,29 +27,31 @@
             <div class="form_group">
                 <form method="POST, GET">
                     <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
-                            <h3>Please enter your name!</h3>
-                            <input id="name" type="text" name="name" placeholder="Your name" class="form-control"/>
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-5 col-lg-2">
+                            <h4>I'd like two appointments at the same time</h4>
+                            <input type="checkbox" class="form-control"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                        <div class="col-sm-offset-1 col-sm-10 col-lg-3">
+                            <h3>Please enter your name!</h3>
+                            <input type="text" name="name" placeholder="Your name" class="form-control"/>
+                        </div>
+                        <div class="col-lg-offset-4 col-lg-3">
                             <h3>Please enter your locker number!</h3>
                             <input id="lockerno" type="number" name="lockerno" placeholder="Your locker number" class="form-control"/>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
-                            <h3>I'd like two appointment at the same time</h3>
+                            <label for="sel1">Please choose your massage length!</label>
+                            <select class="form-control">
+                                <option th:each="time, iterstat: ${lengths}" th:value="${time}" th:text="${time}"/>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
-                            <input type="checkbox" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
+                        <div class="col-sm-offset-1 col-sm-10 col-lg-offset-0 col-lg-5">
                             <label for="sel1">Please choose your massage therapist!</label>
                             <select id="masseur" name="masseur" class="form-control">
                                 <option th:each="name, iterstat: ${masseurs}" th:value="${name}" th:text="${name}"/>
