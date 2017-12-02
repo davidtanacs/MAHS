@@ -1,8 +1,8 @@
-import spark.ModelAndView;
+package com.hobbyProject.mahs;
+
+import com.hobbyProject.mahs.controller.DataController;
 import spark.Request;
 import spark.Response;
-import spark.Spark.*;
-import org.thymeleaf.context.WebContext;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 
 import static spark.Spark.*;
