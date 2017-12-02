@@ -1,9 +1,15 @@
 package com.hobbyProject.mahs.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Component
+@Scope("session")
 public class MassageTherapist {
 
     public massageTherapist name;
