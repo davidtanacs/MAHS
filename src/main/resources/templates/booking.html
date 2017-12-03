@@ -27,7 +27,7 @@
             <div class="form_group">
                 <form method="POST, GET">
                     <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-5 col-lg-2">
+                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-5 col-lg-4">
                             <h4>I'd like two appointments at the same time</h4>
                             <input type="checkbox" class="form-control"/>
                         </div>
@@ -43,14 +43,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
-                            <label for="sel1">Please choose your massage length!</label>
-                            <select class="form-control">
-                                <option th:each="time, iterstat: ${lengths}" th:value="${time}" th:text="${time}"/>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-offset-1 col-sm-10 col-lg-offset-0 col-lg-5">
                             <label for="sel1">Please choose your massage therapist!</label>
                             <select id="masseur" name="masseur" class="form-control">
@@ -61,8 +53,8 @@
                     <div class="row">
                         <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
                             <label for="sel1">Please choose your massage length!</label>
-                            <select id="length" name="length" class="form-control">
-                                <option th:each="time, iterstat: ${lengths}" th:value="${time}" th:text="${time}"/>
+                            <select id="length" name="massages" class="form-control">
+                                <option th:each="time, iterstat: ${massages}" th:value="${time}" th:text="${time.key + ' min. - ' + time.value + 'HUF'}"/>
                             </select>
                         </div>
                     </div>

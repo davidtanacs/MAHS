@@ -3,64 +3,58 @@ package com.hobbyProject.mahs.model;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.time.Duration;
 import java.time.LocalTime;
 
-
+@Entity
+@Table(name = "treatment")
 @Component
 @Scope("session")
 public class Treatment {
 
-    private static int treatmentCounter = 0;
-    private int treatmentId;
-    private Duration treatmentLength;
-    private LocalTime treatmentStart;
-    private LocalTime treatmentEnd;
-    private Duration breakAfter;
-    MassageTherapist massageTherapist;
-    private int guestId;
-    private int price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-    public Treatment(Long treatmentLength, int treatmentStartHour, int treatmentStartMinute, MassageTherapist massageTherapist, int guestId) {
-        treatmentCounter++;
-        this.treatmentId = treatmentCounter;
-        this.treatmentLength = Duration.ofMinutes(treatmentLength);
+    @Column(name = "start")
+    private LocalTime treatmentStart;
+
+    @Column(name = "end")
+    private LocalTime treatmentEnd;
+
+    @Column(name = "break")
+    private Duration breakAfter;
+
+    @Column(name = "massage")
+    private Massage massage;
+
+    @Transient
+    MassageTherapist massageTherapist;
+
+    @Column(name = "guestId")
+    private int guestId;
+
+
+    public Treatment(Massage massage, int treatmentStartHour, int treatmentStartMinute, MassageTherapist massageTherapist, int guestId) {
+        this.massage = massage;
         this.treatmentStart = LocalTime.of(treatmentStartHour, treatmentStartMinute);
-        this.treatmentEnd = treatmentStart.plusMinutes(treatmentLength);
+        this.treatmentEnd = treatmentStart.plusMinutes(massage.length);
         this.massageTherapist = massageTherapist;
         this.guestId = guestId;
-        if (treatmentLength < 60){
-            this.breakAfter = Duration.ofMinutes(5);
-        } else {
-            this.breakAfter = Duration.ofMinutes(10);
-        }
-        if (treatmentLength == 15L) {
-            this.price = 1990;
-        } else if (treatmentLength == 30L) {
-            this.price = 3490;
-        } else if (treatmentLength == 45L) {
-            this.price = 4990;
-        } else if (treatmentLength == 60L) {
-            this.price = 6390;
-        } else if (treatmentLength == 90L) {
-            this.price = 8990;
-        }
+
     }
 
-    public int getPrice() {
-        return price;
+    public Massage getMassage() {
+        return massage;
     }
 
-    public int getTreatmentId() {
-        return treatmentId;
+    public void setMassage(Massage massage) {
+        this.massage = massage;
     }
 
-    public Duration getTreatmentLength() {
-        return treatmentLength;
-    }
-
-    public void setTreatmentLength(Duration treatmentLength) {
-        this.treatmentLength = treatmentLength;
+    public int getId() {
+        return id;
     }
 
     public LocalTime getTreatmentStart() {
