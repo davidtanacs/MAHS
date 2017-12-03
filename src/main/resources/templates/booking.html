@@ -1,81 +1,99 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8"/>
-        <!-- Latest compiled and minified Jquery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8"/>
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
 
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-        <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-        <title>Booking</title>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Massage booking</h1>
-            <div class="form_group">
-                <form method="POST, GET">
-                    <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-5 col-lg-4">
-                            <h4>I'd like two appointments at the same time</h4>
+    <title>Booking</title>
+</head>
+<body>
+<div class="container">
+    <div class="form_group">
+        <form method="POST, GET">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-offset-4 col-sm-4">
+                        <h1>Massage booking</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-4 col-sm-4">
+                        <h4>I'd like two appointments at the same time</h4>
+                        <div class="col-sm-offset-5 col-sm-2">
                             <input type="checkbox" class="form-control"/>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-offset-1 col-sm-10 col-lg-3">
-                            <h3>Please enter your name!</h3>
+                    <div class="col-sm-offset-1 col-sm-4">
+                        <h3>Please enter your name!</h3>
+                        <div class="col-sm-offset-2 col-sm-6">
                             <input type="text" name="name" placeholder="Your name" class="form-control"/>
                         </div>
-                        <div class="col-lg-offset-4 col-lg-3">
-                            <h3>Please enter your locker number!</h3>
-                            <input id="lockerno" type="number" name="lockerno" placeholder="Your locker number" class="form-control"/>
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <h3>Please enter your locker number!</h3>
+                        <div class="col-sm-offset-3 col-sm-5">
+                            <input id="lockerno" type="number" name="lockerno" placeholder="Your locker no."
+                                   class="form-control"/>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-offset-1 col-sm-10 col-lg-offset-0 col-lg-5">
-                            <label for="sel1">Please choose your massage therapist!</label>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-3 col-sm-6">
+                        <label for="sel1">Please choose your massage therapist!</label>
+                        <div class="col-sm-offset-4 col-sm-3">
                             <select id="masseur" name="masseur" class="form-control">
                                 <option th:each="name, iterstat: ${masseurs}" th:value="${name}" th:text="${name}"/>
                             </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
-                            <label for="sel1">Please choose your massage length!</label>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-1 col-sm-4">
+                        <label for="sel1">Please choose your massage length!</label>
+                        <div class="col-sm-offset-1 col-sm-8">
                             <select id="length" name="massages" class="form-control">
-                                <option th:each="time, iterstat: ${massages}" th:value="${time}" th:text="${time.key + ' min. - ' + time.value + 'HUF'}"/>
+                                <option th:each="time, iterstat: ${massages}" th:value="${time}"
+                                        th:text="${time.key + ' min. - ' + time.value + 'HUF'}"/>
                             </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
-                            <label for="sel1">Please choose your massage starting time</label>
+                    <div class="col-sm-offset-2 col-sm-5">
+                        <label for="sel1">Please choose your massage starting time</label>
+                        <div class="col-sm-offset-3 col-sm-4">
                             <select id="time" name="appointment" class="form-control">
                                 <option th:each="time, iterstat: ${appointments}" th:value="${time}" th:text="${time}"/>
                             </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-offset-3 col-sm-6 col-lg-offset-4 col-lg-4">
-                            <input th:onclick="'booking();'" type="submit" value="Book it!" class="form-control"/>
-                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-5 col-sm-2">
+                        <input th:onclick="'booking();'" type="submit" value="Book it!" class="form-control"/>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <script src="/js/app.js"></script>
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.1.2.min.js"></script>
-    </body>
+
+
+        </form>
+    </div>
+</div>
+<script src="/js/app.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.1.2.min.js"></script>
+</body>
 </html>
