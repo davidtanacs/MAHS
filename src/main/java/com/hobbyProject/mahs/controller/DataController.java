@@ -27,4 +27,9 @@ public class DataController {
         dataService.bookAMassage(model, lockerNo, name, length, treatmentStartHour, treatmentStartMinute, masseur);
         return dataService.renderBookingPage(model);
     }
+
+    @RequestMapping(value = "guest", method = RequestMethod.GET)
+    public String renderGuest(Model model){
+        return dataService.renderGuest(model);
+    }
 }
