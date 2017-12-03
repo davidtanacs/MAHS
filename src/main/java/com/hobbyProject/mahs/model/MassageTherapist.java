@@ -1,40 +1,56 @@
 package com.hobbyProject.mahs.model;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.type.StringType;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@TypeDef(
+        name = "MassageTherapist",
+        defaultForType = String.class,
+        typeClass = StringType.class
+)
 
+@Entity
+@Table(name = "MassageTherapist")
 @Component
 @Scope("session")
 public class MassageTherapist {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @Column(name = "name")
     public massageTherapist name;
-    String gender;
-    List<Integer> treatments;
-    static List<MassageTherapist> massageTherapists = new ArrayList<>();
-    public List<LocalTime> freeAppointments = new ArrayList<>();
-    LocalTime shiftStart;
-    LocalTime shiftEnd;
+
+    @Column(name = "gender")
+    private String gender;
+
+    @Transient
+    private List<Integer> treatments;
+
+    @Transient
+    private static List<MassageTherapist> massageTherapists = new ArrayList<>();
+
+    @Type(type = "shift")
+    private Shift shift;
+
+
     
-    
-    public MassageTherapist(massageTherapist name){
+    public MassageTherapist(massageTherapist name, Shift shift){
         this.name = name;
         this.gender = name.getGender();
         this.treatments = new ArrayList<>();
-        this.freeAppointments = generateAppointments();
+        this.shift = shift;
         massageTherapists.add(this);
 
-    }
-    
-    private boolean isAfternoon(){
-        if (LocalTime.now().isAfter(LocalTime.of(13,00))){
-            return true;
-        }
-        return false;
     }
 
     public static MassageTherapist getMasseurByName(String name){
@@ -48,38 +64,6 @@ public class MassageTherapist {
         return null;
     }
 
-    public LocalTime getShiftStart() {
-        return shiftStart;
-    }
-
-    public LocalTime getShiftEnd() {
-        return shiftEnd;
-    }
-
-    private List generateAppointments(){
-        if (isAfternoon()){
-            shiftStart = LocalTime.of(15,30);
-            if (LocalTime.now().isAfter(shiftStart)){
-                shiftStart = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
-            }
-            shiftEnd = LocalTime.of(20,35);
-        } else {
-            shiftStart = LocalTime.of(9,00);
-            /*if(LocalTime.now().isAfter(shiftStart)){
-                shiftStart = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
-            }*/
-            shiftEnd = LocalTime.of(11,35);
-        }
-        while (shiftStart.getMinute() % 5 != 0){
-            shiftStart = shiftStart.plusMinutes(1);
-        }
-        while (shiftStart.isBefore(shiftEnd)){
-            freeAppointments.add(shiftStart);
-            shiftStart = shiftStart.plusMinutes(5);
-        }
-        return freeAppointments;
-    }
-
     public void addTreatments(Integer treatmentId){
         treatments.add(treatmentId);
     }
@@ -90,6 +74,10 @@ public class MassageTherapist {
 
     public massageTherapist getName() {
         return name;
+    }
+
+    public Shift getShift() {
+        return shift;
     }
 
     public enum massageTherapist {
@@ -108,6 +96,8 @@ public class MassageTherapist {
         public String getGender(){
             return gender;
         }
+
+
 
     }
 }
