@@ -1,5 +1,8 @@
 package com.hobbyProject.mahs.model;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.type.StringType;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -7,6 +10,12 @@ import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+
+@TypeDef(
+        name = "MassageTherapist",
+        defaultForType = String.class,
+        typeClass = StringType.class
+)
 
 @Entity
 @Table(name = "MassageTherapist")
@@ -22,16 +31,16 @@ public class MassageTherapist {
     public massageTherapist name;
 
     @Column(name = "gender")
-    String gender;
+    private String gender;
 
     @Transient
-    List<Integer> treatments;
+    private List<Integer> treatments;
 
     @Transient
-    static List<MassageTherapist> massageTherapists = new ArrayList<>();
+    private static List<MassageTherapist> massageTherapists = new ArrayList<>();
 
-    @Transient
-    Shift shift;
+    @Type(type = "shift")
+    private Shift shift;
 
 
     

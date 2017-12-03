@@ -1,5 +1,6 @@
 package com.hobbyProject.mahs.model;
 
+import org.hibernate.annotations.Type;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -17,10 +18,10 @@ public class Treatment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "start")
+    @Column
     private LocalTime treatmentStart;
 
-    @Column(name = "end")
+    @Column
     private LocalTime treatmentEnd;
 
     @Column(name = "break")
@@ -29,8 +30,8 @@ public class Treatment {
     @Column(name = "massage")
     private Massage massage;
 
-    @Transient
-    MassageTherapist massageTherapist;
+    @Type(type = "MassageTherapist")
+    private MassageTherapist massageTherapist;
 
     @Column(name = "guestId")
     private int guestId;

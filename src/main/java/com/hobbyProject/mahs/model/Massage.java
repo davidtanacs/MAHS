@@ -3,10 +3,10 @@ package com.hobbyProject.mahs.model;
 public enum Massage {
 
     fifteen(15),
-    thirteen(30),
+    thirty(30),
     fourtyfive(45),
-    sixteen(60),
-    nineteen(90);
+    sixty(60),
+    ninety(90);
 
     public int length;
     int price;

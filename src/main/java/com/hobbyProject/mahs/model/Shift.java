@@ -1,12 +1,27 @@
 package com.hobbyProject.mahs.model;
 
-import javax.persistence.Column;
-import javax.persistence.Transient;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.type.StringType;
+
+import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@TypeDef(
+        name = "shift",
+        defaultForType = String.class,
+        typeClass = StringType.class
+)
+
+@Entity
+@Table
 public class Shift {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
     @Column(name = "shiftStart")
     LocalTime shiftStart;
