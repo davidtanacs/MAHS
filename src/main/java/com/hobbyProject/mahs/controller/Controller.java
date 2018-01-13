@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.Resource;
+
 @org.springframework.stereotype.Controller
 public class Controller {
 
@@ -18,6 +20,9 @@ public class Controller {
 
     @Autowired
     private GuestService guestService;
+
+    @Resource(name = "sessionGuest")
+    Guest sessionGuest;
 
 
     public String addNewGuest(Guest guest){
@@ -40,7 +45,7 @@ public class Controller {
 
     @RequestMapping(value = "guest", method = RequestMethod.GET)
     public String renderGuest(Model model){
-        model.addAttribute("guest", new Guest());
+        model.addAttribute("guest", sessionGuest);
         return "guest";
     }
 

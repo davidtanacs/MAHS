@@ -1,14 +1,16 @@
 package com.hobbyProject.mahs.model;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "guest")
 @Component
-@Scope("session")
 public class Guest {
 
     @Id
@@ -28,6 +30,13 @@ public class Guest {
         this.lockerNo = lockerNo;
         this.name = name;
     }
+
+    @Bean
+    @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public Guest sessionGuest(){
+        return new Guest();
+    }
+
 
     public int getId() {
         return id;
@@ -53,3 +62,4 @@ public class Guest {
         this.name = name;
     }
 }
+
