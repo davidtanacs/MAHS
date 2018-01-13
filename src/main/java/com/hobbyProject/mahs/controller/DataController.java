@@ -1,6 +1,5 @@
 package com.hobbyProject.mahs.controller;
 
-import com.hobbyProject.mahs.model.*;
 import com.hobbyProject.mahs.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
