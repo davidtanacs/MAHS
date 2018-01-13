@@ -16,34 +16,29 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+
 
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <title>New guest</title>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-offset-3 col-sm-6"></div>
-        <div class="col-sm-offset-2 col-sm-8">
-            <h3>Please enter your name!</h3>
-            <div class="col-sm-offset-2 col-sm-6">
-                <input type="text" id="name" name="name" placeholder="Your name" class="form-control"/>
-            </div>
+
+<div class="form-style-10">
+    <h1>Please enter your name and locker number!<span>We will connect you with your massage by these datas.</span></h1>
+    <form>
+        <div class="section"><span>1</span>Name &amp; Locker number</div>
+        <div class="inner-wrap">
+            <label>Your Name <input type="text" name="name" /></label>
+            <label>Your locker number <input type="number" name="lockerno" min="0" max="80"/> </label>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-offset-4 col-sm-4">
-            <h3>Please enter your locker number!</h3>
-            <div class="col-sm-offset-3 col-sm-5">
-                <input id="lockerno" type="number" name="lockerno" placeholder="Your locker no."  min="0" max="80"
-                       class="form-control"/>
-    </div>
-    <div class="row">
-        <div class="col-sm-offset-3 col-sm-6">
-            <input type="submit" min="3"/>
+
+        <div class="button-section">
+            <input type="submit" name="Next step" />
         </div>
-    </div>
-        </div></div>
+    </form>
 </div>
+
+
 </body>
 </html>
