@@ -1,6 +1,7 @@
 package com.hobbyProject.mahs.controller;
 
 import com.hobbyProject.mahs.model.Guest;
+import com.hobbyProject.mahs.service.GuestService;
 import com.hobbyProject.mahs.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -14,6 +15,15 @@ public class Controller {
 
     @Autowired
     private Service service;
+
+    @Autowired
+    private GuestService guestService;
+
+
+    public String addNewGuest(Guest guest){
+        guestService.saveGuest(guest);
+        return "massage";
+    }
 
     @RequestMapping(value = "/booking", method = RequestMethod.GET)
     public String renderBook(Model model) {
@@ -36,7 +46,7 @@ public class Controller {
 
     @RequestMapping(value = "addGuest", method = RequestMethod.POST)
     public String saveNewGuest(@ModelAttribute Guest guest){
-        //TODO save user to db
+        addNewGuest(guest);
         return "redirect:/massage";
     }
 
