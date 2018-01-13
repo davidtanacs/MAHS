@@ -1,7 +1,6 @@
 package com.hobbyProject.mahs.service;
 
 import com.hobbyProject.mahs.model.*;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import java.util.ArrayList;
@@ -9,8 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service
-public class DataService {
+@org.springframework.stereotype.Service
+public class Service {
 
     public String renderBookingPage(Model model){
         Map<Integer, Integer> massages = new HashMap<>();
@@ -55,9 +54,7 @@ public class DataService {
         System.out.println("price: " + treatment.getMassage().getPrice());
     }
 
-    public String renderGuest(Model model){
-        return "guest";
-    }
+
 
     public Massage getMassageEnumByLength(int length){
         Massage massage = null;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <!-- Latest compiled and minified Jquery -->
@@ -26,15 +26,15 @@
 
 <div class="form-style-10">
     <h1>Please enter your name and locker number!<span>We will connect you with your massage by these datas.</span></h1>
-    <form>
+    <form action="#" th:action="@{/addGuest}" th:object="${guest}" method="post">
         <div class="section"><span>1</span>Name &amp; Locker number</div>
         <div class="inner-wrap">
-            <label>Your Name <input type="text" name="name" /></label>
-            <label>Your locker number <input type="number" name="lockerno" min="0" max="80"/> </label>
+            <label>Your Name <input type="text" name="name" th:field="*{name}"/></label>
+            <label>Your locker number <input type="number" name="lockerno" th:field="*{lockerNo}" min="0" max="80"/> </label>
         </div>
 
         <div class="button-section">
-            <input type="submit" name="Next step" />
+            <input type="submit" value="To massage booking"/>
         </div>
     </form>
 </div>

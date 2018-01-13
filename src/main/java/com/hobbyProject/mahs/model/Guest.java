@@ -18,8 +18,11 @@ public class Guest {
     @Column(name = "lockerNo")
     private int lockerNo;
 
-    @Column(name = "guestName")
+    @Column(name = "name")
     private String name;
+
+    public Guest() {
+    }
 
     public Guest(int lockerNo, String name){
         this.lockerNo = lockerNo;
@@ -36,5 +39,17 @@ public class Guest {
 
     public String getName() {
         return name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setLockerNo(int lockerNo) {
+        this.lockerNo = lockerNo;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
