@@ -35,11 +35,11 @@ public class Controller {
         return service.renderBookingPage(model);
     }
 
-    @RequestMapping(value = "/submitBooking/{lockerno}/{name}/{length}/{hour}/{minute}/{masseur}", method = RequestMethod.POST)
-    public String submitBooking(Model model, @PathVariable(value = "lockerno") int lockerNo, @PathVariable(value = "name") String name,
+    @RequestMapping(value = "/submitBooking/{length}/{hour}/{minute}/{masseur}", method = RequestMethod.POST)
+    public String submitBooking(Model model,
                                 @PathVariable(value = "length") String length, @PathVariable(value = "hour") int treatmentStartHour,
                                 @PathVariable(value = "minute") int treatmentStartMinute, @PathVariable(value = "masseur") String masseur){
-        service.bookAMassage(model, lockerNo, name, length, treatmentStartHour, treatmentStartMinute, masseur);
+        service.bookAMassage(model, sessionGuest, length, treatmentStartHour, treatmentStartMinute, masseur);
         return service.renderBookingPage(model);
     }
 

@@ -40,8 +40,7 @@ public class Service {
         return "/booking";
     }
 
-    public void bookAMassage(Model model, int lockerNo, String name, String length, int treatmentStartHour, int treatmentStartMinute, String masseur){
-        Guest guest = new Guest(lockerNo, name);
+    public void bookAMassage(Model model, Guest guest, String length, int treatmentStartHour, int treatmentStartMinute, String masseur){
         Treatment treatment = new Treatment(getMassageEnumByLength(Integer.parseInt(length)), treatmentStartHour, treatmentStartMinute,
             MassageTherapist.getMasseurByName(masseur), guest.getId());
         MassageTherapist.getMasseurByName(masseur).addTreatments(treatment.getId());
