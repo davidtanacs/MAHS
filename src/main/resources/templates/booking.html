@@ -16,82 +16,36 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
     <title>Booking</title>
 </head>
 <body>
-<div class="container">
-    <div class="form_group">
-        <form method="POST">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <h1>Massage booking</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-offset-4 col-sm-4">
-                        <h4>I'd like two appointments at the same time</h4>
-                        <div class="col-sm-offset-5 col-sm-2">
-                            <input type="checkbox" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-1 col-sm-4">
-                        <h3>Please enter your name!</h3>
-                        <div class="col-sm-offset-2 col-sm-6">
-                            <input type="text" id="name" name="name" placeholder="Your name" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-5">
-                        <h3>Please enter your locker number!</h3>
-                        <div class="col-sm-offset-3 col-sm-5">
-                            <input id="lockerno" type="number" name="lockerno" placeholder="Your locker no."  min="0" max="80"
-                                   class="form-control"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-offset-3 col-sm-6">
-                        <label for="sel1">Please choose your massage therapist!</label>
-                        <div class="col-sm-offset-4 col-sm-3">
-                            <select id="masseur" name="masseur" class="form-control">
-                                <option th:each="name, iterstat: ${masseurs}" th:value="${name}" th:text="${name}"/>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-offset-1 col-sm-4">
-                        <label for="sel1">Please choose your massage length!</label>
-                        <div class="col-sm-offset-1 col-sm-8">
-                            <select id="length" name="massage" class="form-control">
-                                <option th:each="time, iterstat: ${massages}" th:value="${time}"
-                                        th:text="${time.key + ' min. - ' + time.value + 'HUF'}"/>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-5">
-                        <label for="sel1">Please choose your massage starting time</label>
-                        <div class="col-sm-offset-3 col-sm-4">
-                            <select id="time" name="appointment" class="form-control">
-                                <option th:each="time, iterstat: ${appointments}" th:value="${time}" th:text="${time}"/>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-offset-5 col-sm-2">
-                        <input th:onclick="'booking();'" type="submit" value="Book it!" class="form-control"/>
-                    </div>
-                </div>
-            </div>
+<div class="form-style-10">
+    <h1>Please enter your massage's details!<span>We will need your massage length, the appointment you'd like and your choosen masseur's name.</span></h1>
+    <form action="#" th:action="@{/addGuest}" th:object="${guest}" method="post">
+        <div class="section"><span>2</span>Name &amp; Locker number</div>
+        <div class="inner-wrap">
+            <label>Choose a massage therapist<select id="masseur" name="masseur" class="form-control">
+                <option th:each="name, iterstat: ${masseurs}" th:value="${name}" th:text="${name}"/>
+            </select></label>
+            <label>Choose your massage length<select id="length" name="massage" class="form-control">
+                <option th:each="time, iterstat: ${massages}" th:value="${time}"
+                        th:text="${time.key + ' min. - ' + time.value + 'HUF'}"/>
+            </select></label>
+            <label>Choose your appointment<select id="time" name="appointment" class="form-control">
+                <option th:each="time, iterstat: ${appointments}" th:value="${time}" th:text="${time}"/>
+            </select></label>
+        </div>
 
-
-        </form>
-    </div>
+        <div class="button-section">
+            <input type="submit" th:onclick="'booking();'" value="Book it!"/>
+        </div>
+    </form>
 </div>
+
 <script src="/js/app.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://intercoolerreleases-leaddynocom.netdna-ssl.com/intercooler-1.1.2.min.js"></script>
