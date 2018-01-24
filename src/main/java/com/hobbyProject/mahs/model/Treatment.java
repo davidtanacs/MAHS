@@ -11,7 +11,6 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "treatment")
 @Component
-@Scope("session")
 public class Treatment {
 
     @Id
@@ -36,6 +35,7 @@ public class Treatment {
     @Column(name = "guestId")
     private int guestId;
 
+    public Treatment() {}
 
     public Treatment(Massage massage, int treatmentStartHour, int treatmentStartMinute, MassageTherapist massageTherapist, int guestId) {
         this.massage = massage;

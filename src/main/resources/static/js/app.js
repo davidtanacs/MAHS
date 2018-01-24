@@ -1,6 +1,6 @@
 function booking() {
-    var name = $('#name').val();
-    var lockerno = $('#lockerno').val();
+    var name = $('#hiddenSessionName').val();
+    var lockerno = $('#hiddenSessionLockerNo').val();
     var masseur = $('#masseur').val();
     var length = $('#length').val();
     length = length[0] + length[1];

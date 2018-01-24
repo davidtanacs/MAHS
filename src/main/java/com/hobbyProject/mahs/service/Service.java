@@ -3,6 +3,7 @@ package com.hobbyProject.mahs.service;
 import com.hobbyProject.mahs.model.*;
 import org.springframework.ui.Model;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,20 +12,16 @@ import java.util.Map;
 @org.springframework.stereotype.Service
 public class Service {
 
-    public String renderBookingPage(Model model){
+    public String renderBookingPage(Model model, HttpSession session){
         Map<Integer, Integer> massages = new HashMap<>();
 
         List masseurs = new ArrayList();
-        MassageTherapist Kitti = new MassageTherapist(MassageTherapist.massageTherapist.Kitti, new Shift());
-        masseurs.add(Kitti.name);
-        MassageTherapist Betti = new MassageTherapist(MassageTherapist.massageTherapist.Betti, new Shift());
-        masseurs.add(Betti.name);
         MassageTherapist Dani = new MassageTherapist(MassageTherapist.massageTherapist.Dani, new Shift());
         masseurs.add(Dani.name);
         MassageTherapist Móni = new MassageTherapist(MassageTherapist.massageTherapist.Móni, new Shift());
         masseurs.add(Móni.name);
 
-        List appointments = Kitti.getShift().freeAppointments;
+        List appointments = Dani.getShift().freeAppointments;
         model.addAttribute("appointments", appointments);
         model.addAttribute("masseurs", masseurs);
 
@@ -37,15 +34,18 @@ public class Service {
 
         model.addAttribute("massages", massages);
 
+        Guest guest = (Guest)session.getAttribute("sessionGuest");
+
+
         return "/booking";
     }
 
-    public void bookAMassage(Model model, Guest guest, String length, int treatmentStartHour, int treatmentStartMinute, String masseur){
-        Treatment treatment = new Treatment(getMassageEnumByLength(Integer.parseInt(length)), treatmentStartHour, treatmentStartMinute,
-            MassageTherapist.getMasseurByName(masseur), guest.getId());
-        MassageTherapist.getMasseurByName(masseur).addTreatments(treatment.getId());
+    public void bookAMassage(Model model, Guest guest, Massage massage, int treatmentStartHour, int treatmentStartMinute, MassageTherapist massageTherapist){
+        Treatment treatment = new Treatment(massage, treatmentStartHour, treatmentStartMinute,
+                massageTherapist, guest.getId());
+        massageTherapist.addTreatments(treatment.getId());
 
-        System.out.println(MassageTherapist.getMasseurByName(masseur).getTreatments());
+        System.out.println(massageTherapist.getTreatments());
         System.out.println("guest: " + guest.getName() + " id: " + guest.getId() + " lockerNO: " + guest.getLockerNo());
         System.out.println("treatment start: " + treatment.getTreatmentStart() + " end: " + treatment.getTreatmentEnd());
         System.out.println("length: " + treatment.getMassage().length  + " break after: " + treatment.getBreakAfter());
