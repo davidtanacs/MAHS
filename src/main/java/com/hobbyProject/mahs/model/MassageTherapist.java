@@ -41,8 +41,9 @@ public class MassageTherapist {
     @Type(type = "shift")
     private Shift shift;
 
+    public MassageTherapist() {
+    }
 
-    
     public MassageTherapist(massageTherapist name, Shift shift){
         this.name = name;
         this.gender = name.getGender();
