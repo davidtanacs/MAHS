@@ -42,7 +42,7 @@ public class Treatment {
     public Treatment(Massage massage, LocalTime treatmentStart, MassageTherapist massageTherapist, int guestId) {
         this.massage = massage;
         this.treatmentStart = treatmentStart;
-        this.treatmentEnd = treatmentStart.plusMinutes(massage.length);
+        this.treatmentEnd = treatmentStart.plusMinutes(massage.getLength());
         this.massageTherapist = massageTherapist;
         this.guestId = guestId;
 

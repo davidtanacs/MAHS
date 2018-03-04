@@ -14,9 +14,9 @@ public class Service {
 
         List masseurs = new ArrayList();
         MassageTherapist Dani = new MassageTherapist(MassageTherapist.massageTherapist.Dani, new Shift());
-        masseurs.add(Dani.name);
+        masseurs.add(Dani.getName());
         MassageTherapist Móni = new MassageTherapist(MassageTherapist.massageTherapist.Móni, new Shift());
-        masseurs.add(Móni.name);
+        masseurs.add(Móni.getName());
 
         List appointments = Dani.getShift().freeAppointments;
         model.addAttribute("appointments", appointments);

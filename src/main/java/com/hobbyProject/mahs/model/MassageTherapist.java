@@ -27,7 +27,7 @@ public class MassageTherapist {
     private int id;
 
     @Column(name = "name")
-    public massageTherapist name;
+    private massageTherapist name;
 
     @Column(name = "gender")
     private String gender;
