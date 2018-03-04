@@ -30,7 +30,7 @@ public class Treatment {
 
     @Transient
     private Massage massage;
-    
+
     @ManyToOne
     private MassageTherapist massageTherapist;
 

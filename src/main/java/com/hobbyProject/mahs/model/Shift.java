@@ -29,6 +29,9 @@ public class Shift {
     @Column(name = "shiftEnd")
     private LocalTime shiftEnd;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "name")
+    private List<MassageTherapist> massageTherapistsWorking;
+
     @Transient
     public List<LocalTime> freeAppointments = new ArrayList<>();
 

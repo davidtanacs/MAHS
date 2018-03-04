@@ -38,7 +38,7 @@ public class MassageTherapist {
     @Transient
     private static List<MassageTherapist> massageTherapists = new ArrayList<>();
 
-    @Type(type = "shift")
+    @ManyToOne
     private Shift shift;
 
     public MassageTherapist() {
