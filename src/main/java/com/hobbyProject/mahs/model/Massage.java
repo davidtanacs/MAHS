@@ -1,18 +1,32 @@
 package com.hobbyProject.mahs.model;
 
-public enum Massage {
 
-    fifteen(15),
-    thirty(30),
-    fourtyfive(45),
-    sixty(60),
-    ninety(90);
+import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+
+
+@Entity
+@Component
+public class Massage {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    long id;
+
+    @Column
     public int length;
-    int price;
-    int breakAfter;
 
-    Massage(int length){
+    @Column
+    private int price;
+
+    @Column
+    private int breakAfter;
+
+    public Massage() {
+    }
+
+    public Massage(int length){
         this.length = length;
         switch (length){
             case 15:
