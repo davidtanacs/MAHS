@@ -1,7 +1,6 @@
 package com.hobbyProject.mahs.controller;
 
 import com.hobbyProject.mahs.model.Guest;
-import com.hobbyProject.mahs.model.Massage;
 import com.hobbyProject.mahs.model.Treatment;
 import com.hobbyProject.mahs.service.GuestService;
 import com.hobbyProject.mahs.service.Service;

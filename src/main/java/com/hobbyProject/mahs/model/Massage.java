@@ -12,10 +12,10 @@ public class Massage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
+    private long id;
 
     @Column
-    public int length;
+    private int length;
 
     @Column
     private int price;
@@ -58,5 +58,29 @@ public class Massage {
 
     public int getPrice() {
         return price;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getBreakAfter() {
+        return breakAfter;
+    }
+
+    public void setBreakAfter(int breakAfter) {
+        this.breakAfter = breakAfter;
     }
 }
