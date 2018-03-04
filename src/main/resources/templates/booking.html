@@ -33,10 +33,10 @@
             </select></label>
             <label>Choose your massage length<select id="length" name="massage" class="form-control">
                 <option th:each="massage, iterstat: ${massages}" th:value="${massage}"
-                        th:text="${massage.key + ' min. - ' + massage.value + 'HUF'}" th:field="*{massage}"/>
+                        th:text="${massage.length + ' min. - ' + massage.price + 'HUF'}" th:field="*{massage}"/>
             </select></label>
             <label>Choose your appointment<select id="time" name="appointment" class="form-control">
-                <option th:each="time, iterstat: ${appointments}" th:value="${time}" th:text="${time}"/>
+                <option th:each="time, iterstat: ${appointments}" th:value="${time}" th:text="${time}" th:field="*{treatmentStart}"/>
             </select></label>
             <input type="hidden" id="hiddenSessionName" th:value="${guestName}"/>
             <input type="hidden" id="hiddenSessionLockerNo" th:value="${lockerNo}"/>
