@@ -4,6 +4,7 @@ package com.hobbyProject.mahs.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -22,6 +23,9 @@ public class Massage {
 
     @Column
     private int breakAfter;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "massage")
+    private List<Treatment> treatments;
 
     public Massage() {
     }

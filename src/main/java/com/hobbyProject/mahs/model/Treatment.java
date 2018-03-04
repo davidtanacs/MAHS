@@ -28,7 +28,7 @@ public class Treatment {
     @Column(name = "break")
     private Duration breakAfter;
 
-    @Transient
+    @ManyToOne
     private Massage massage;
 
     @ManyToOne
