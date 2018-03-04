@@ -34,17 +34,18 @@ public class Treatment {
     @ManyToOne
     private MassageTherapist massageTherapist;
 
-    @Column(name = "guestId")
-    private int guestId;
+    @OneToOne(mappedBy = "treatment")
+    private Guest guest;
+
 
     public Treatment() {}
 
-    public Treatment(Massage massage, LocalTime treatmentStart, MassageTherapist massageTherapist, int guestId) {
+    public Treatment(Massage massage, LocalTime treatmentStart, MassageTherapist massageTherapist, Guest guest) {
         this.massage = massage;
         this.treatmentStart = treatmentStart;
         this.treatmentEnd = treatmentStart.plusMinutes(massage.getLength());
         this.massageTherapist = massageTherapist;
-        this.guestId = guestId;
+        this.guest = guest;
 
     }
 
@@ -88,11 +89,11 @@ public class Treatment {
         this.massageTherapist = massageTherapist;
     }
 
-    public int getGuestId() {
-        return guestId;
+    public Guest getGuest() {
+        return guest;
     }
 
-    public void setGuestId(int guestId) {
-        this.guestId = guestId;
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 }

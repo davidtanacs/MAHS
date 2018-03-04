@@ -23,6 +23,9 @@ public class Guest {
     @Column(name = "name")
     private String name;
 
+    @OneToOne
+    private Treatment treatment;
+
     public Guest() {
     }
 
@@ -36,7 +39,6 @@ public class Guest {
     public Guest sessionGuest(){
         return new Guest();
     }
-
 
     public int getId() {
         return id;
@@ -60,6 +62,15 @@ public class Guest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @OneToOne()
+    public Treatment getTreatment() {
+        return treatment;
+    }
+
+    public void setTreatment(Treatment treatment) {
+        this.treatment = treatment;
     }
 }
 
