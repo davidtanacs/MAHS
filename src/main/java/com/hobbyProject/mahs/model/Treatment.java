@@ -30,8 +30,8 @@ public class Treatment {
 
     @Transient
     private Massage massage;
-
-    @Type(type = "MassageTherapist")
+    
+    @ManyToOne
     private MassageTherapist massageTherapist;
 
     @Column(name = "guestId")

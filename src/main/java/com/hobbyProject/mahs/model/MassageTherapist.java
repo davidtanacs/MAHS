@@ -32,8 +32,8 @@ public class MassageTherapist {
     @Column(name = "gender")
     private String gender;
 
-    @Transient
-    private List<Integer> treatments;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "massageTherapist")
+    private List<Treatment> treatments;
 
     @Transient
     private static List<MassageTherapist> massageTherapists = new ArrayList<>();
@@ -64,12 +64,12 @@ public class MassageTherapist {
         return null;
     }
 
-    public void addTreatments(Integer treatmentId){
-        treatments.add(treatmentId);
+    public void setTreatments(List<Treatment> treatments) {
+        this.treatments = treatments;
     }
 
-    public List<Integer> getTreatments() {
-        return treatments;
+    public void addTreatments(Treatment treatmentId){
+        treatments.add(treatmentId);
     }
 
     public massageTherapist getName() {
