@@ -24,10 +24,10 @@ public class Shift {
     private int id;
 
     @Column(name = "shiftStart")
-    LocalTime shiftStart;
+    private LocalTime shiftStart;
 
     @Column(name = "shiftEnd")
-    LocalTime shiftEnd;
+    private LocalTime shiftEnd;
 
     @Transient
     public List<LocalTime> freeAppointments = new ArrayList<>();
@@ -65,5 +65,37 @@ public class Shift {
             shiftStart = shiftStart.plusMinutes(5);
         }
         return freeAppointments;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public LocalTime getShiftStart() {
+        return shiftStart;
+    }
+
+    public void setShiftStart(LocalTime shiftStart) {
+        this.shiftStart = shiftStart;
+    }
+
+    public LocalTime getShiftEnd() {
+        return shiftEnd;
+    }
+
+    public void setShiftEnd(LocalTime shiftEnd) {
+        this.shiftEnd = shiftEnd;
+    }
+
+    public List<LocalTime> getFreeAppointments() {
+        return freeAppointments;
+    }
+
+    public void setFreeAppointments(List<LocalTime> freeAppointments) {
+        this.freeAppointments = freeAppointments;
     }
 }
