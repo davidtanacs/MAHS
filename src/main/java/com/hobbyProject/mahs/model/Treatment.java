@@ -2,6 +2,7 @@ package com.hobbyProject.mahs.model;
 
 import org.hibernate.annotations.Type;
 import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Treatment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @DateTimeFormat(pattern = "HH:mm")
     @Column
     private LocalTime treatmentStart;
 
@@ -26,7 +28,7 @@ public class Treatment {
     @Column(name = "break")
     private Duration breakAfter;
 
-    @Column(name = "massage")
+    @Transient
     private Massage massage;
 
     @Type(type = "MassageTherapist")
@@ -37,9 +39,9 @@ public class Treatment {
 
     public Treatment() {}
 
-    public Treatment(Massage massage, int treatmentStartHour, int treatmentStartMinute, MassageTherapist massageTherapist, int guestId) {
+    public Treatment(Massage massage, LocalTime treatmentStart, MassageTherapist massageTherapist, int guestId) {
         this.massage = massage;
-        this.treatmentStart = LocalTime.of(treatmentStartHour, treatmentStartMinute);
+        this.treatmentStart = treatmentStart;
         this.treatmentEnd = treatmentStart.plusMinutes(massage.length);
         this.massageTherapist = massageTherapist;
         this.guestId = guestId;
