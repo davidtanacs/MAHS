@@ -2,12 +2,12 @@ package com.hobbyProject.mahs.controller;
 
 import com.hobbyProject.mahs.model.Guest;
 import com.hobbyProject.mahs.model.Massage;
-import com.hobbyProject.mahs.model.MassageTherapist;
 import com.hobbyProject.mahs.model.Treatment;
 import com.hobbyProject.mahs.service.GuestService;
 import com.hobbyProject.mahs.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +28,7 @@ public class Controller {
     @Autowired
     private Treatment treatment;
 
+
     @Resource(name = "sessionGuest")
     Guest sessionGuest;
 
@@ -42,11 +43,14 @@ public class Controller {
         return service.renderBookingPage(model, session);
     }
 
-    @RequestMapping(value = "/submitBooking", method = RequestMethod.POST)
+    @RequestMapping(value = "submitBooking", method = RequestMethod.POST)
     public String submitBooking(Model model, HttpSession session,
-                                @ModelAttribute Massage massage, @ModelAttribute int treatmentStartHour,
-                                @ModelAttribute int treatmentStartMinute, @ModelAttribute MassageTherapist massageTherapist){
-        service.bookAMassage(model, sessionGuest, massage, treatmentStartHour, treatmentStartMinute, massageTherapist);
+                                @ModelAttribute Treatment treatment, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.toString());
+        }
+        System.out.println(treatment.getMassageTherapist().getName());
+        System.out.println(treatment.getTreatmentStart().getHour() + treatment.getTreatmentStart().getMinute());
         return service.renderBookingPage(model, session);
     }
 
