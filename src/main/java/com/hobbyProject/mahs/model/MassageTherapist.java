@@ -27,18 +27,18 @@ public class MassageTherapist {
     private int id;
 
     @Column(name = "name")
-    public massageTherapist name;
+    private massageTherapist name;
 
     @Column(name = "gender")
     private String gender;
 
-    @Transient
-    private List<Integer> treatments;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "massageTherapist")
+    private List<Treatment> treatments;
 
     @Transient
     private static List<MassageTherapist> massageTherapists = new ArrayList<>();
 
-    @Type(type = "shift")
+    @ManyToOne
     private Shift shift;
 
     public MassageTherapist() {
@@ -53,23 +53,12 @@ public class MassageTherapist {
 
     }
 
-    public static MassageTherapist getMasseurByName(String name){
-        MassageTherapist.massageTherapist massageTherapist = MassageTherapist.massageTherapist.valueOf(name);
-        for (MassageTherapist masseur: massageTherapists
-             ) {
-            if (massageTherapist.equals(masseur.getName())){
-                return masseur;
-            }
-        }
-        return null;
+    public void setTreatments(List<Treatment> treatments) {
+        this.treatments = treatments;
     }
 
-    public void addTreatments(Integer treatmentId){
+    public void addTreatments(Treatment treatmentId){
         treatments.add(treatmentId);
-    }
-
-    public List<Integer> getTreatments() {
-        return treatments;
     }
 
     public massageTherapist getName() {
