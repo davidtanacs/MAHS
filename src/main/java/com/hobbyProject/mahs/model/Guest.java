@@ -64,7 +64,7 @@ public class Guest {
         this.name = name;
     }
 
-    @OneToOne()
+    @OneToOne
     public Treatment getTreatment() {
         return treatment;
     }
