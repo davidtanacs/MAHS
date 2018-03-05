@@ -53,17 +53,6 @@ public class MassageTherapist {
 
     }
 
-    public static MassageTherapist getMasseurByName(String name){
-        MassageTherapist.massageTherapist massageTherapist = MassageTherapist.massageTherapist.valueOf(name);
-        for (MassageTherapist masseur: massageTherapists
-             ) {
-            if (massageTherapist.equals(masseur.getName())){
-                return masseur;
-            }
-        }
-        return null;
-    }
-
     public void setTreatments(List<Treatment> treatments) {
         this.treatments = treatments;
     }
